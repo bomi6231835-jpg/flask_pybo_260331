@@ -1,3 +1,59 @@
 .idea/
 .venv/
 __pycache__/
+
+from pybo.models import Question, Answer
+>>> from datetime import datetime
+>>> q = Question(subject='pybo가 무엇인가요?', content='pybo에 대해서 알고 싶습니다.', create_data=datetime.now())
+[출처] 1-3_모델로 데이터 처리하기|작성자 구름
+
+
+
+>>> from pybo import db
+>>> db.session.add(q)
+>>> db.session.commit()
+[출처] 1-3_모델로 데이터 처리하기|작성자 구름
+
+q = Question(subject='플라스크 모델 질문입니다.', content='id는 자동으로 생성되나요?', create_date=datetime.now())
+>>> db.session.add(q)
+>>> db.session.commit()
+>>> q.id
+2
+[출처] 1-3_모델로 데이터 처리하기|작성자 구름
+
+>>> q = Question(subject='플라스크 모델 질문입니다.', content='id는 자동으로 생성되나요?', create_date=datetime.now())
+
+>>> db.session.add(q)
+>>> db.session.commit()
+>>> q.id
+[출처] 1-3_모델로 데이터 처리하기|작성자 구름
+
+q = Question(subject='플라스크 모델 질문입니다.', content='id는 자동으로 생성되나요?', create_date=datetime.now())
+>>> db.session.add(q)
+>>> db.session.commit()
+>>> q.id
+[출처] 1-3_모델로 데이터 처리하기|작성자 구름
+
+Question.query.filter(Question.id==1).all()
+[<Question 1>]
+
+Question.query.filter(Question.subject.like('%플라스크%')).all()
+[<Question 2>]
+[출처] 1-3_모델로 데이터 처리하기|작성자 구름
+
+q = Question.query.get(2)
+>>> q
+<Question 2>
+>>> q.subject = 'Flask Model Question'
+>>> db.session.commit()
+[출처] 1-3_모델로 데이터 처리하기|작성자 구름
+
+from datatime import datatime
+>>> from pybo.models import Question, Answer
+>>> from pybo import db
+>>> q = Question.query.get(2)
+>>> a = Answer(question=q, content='네 자동으로 생성됩니다.', create_date=datetime.now())
+>>> db.session.add(a)
+>>> db.session.commit()
+[출처] 1-3_모델로 데이터 처리하기|작성자 구름
+

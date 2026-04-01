@@ -1,12 +1,12 @@
-from flask import Blueprint
+from flask import Blueprint, redirect, url_for
 
 bp = Blueprint('main', __name__,url_prefix='/')
 
 @bp.route('/')
 def index():
-    return 'Pybo index!'
 
-@bp.route('/hello')
-def hello_world():
-    return 'Hello Sun!'
+    return redirect(url_for('question._list'))
+
+
+
 
