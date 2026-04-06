@@ -1,11 +1,12 @@
 from datetime import datetime
 
-from flask import Blueprint, redirect, url_for, request, render_template
+from flask import Blueprint, request, redirect, url_for, render_template
+
 from pybo import db
 from pybo.forms import AnswerForm
 from pybo.models import Question, Answer
 
-bp = Blueprint('answer', __name__,url_prefix='/answer')
+bp = Blueprint('answer', __name__, url_prefix='/answer')
 
 @bp.route('/create/<int:question_id>', methods=['POST'])
 def create(question_id):
@@ -24,4 +25,3 @@ def create(question_id):
         return redirect(url_for('question.detail', question_id=question_id))
 
     return render_template('question/question_detail.html', question=question, form=form)
-
